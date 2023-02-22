@@ -5,7 +5,15 @@ const { Producto } = require('../models');
 const obtenerProductos = async(req, res = response ) => {
 
     const { limite = 5, desde = 0 } = req.query;
-    const query = { estado: true };
+    const {categoria } = req.query
+    const query = {categoria}
+    for (const key in query) {
+        if (query[key] === undefined) {
+          delete query[key];
+        }
+      }
+    
+    query.estado = true ;
 
     const [ total, productos ] = await Promise.all([
         Producto.countDocuments(query),
