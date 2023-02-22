@@ -40,7 +40,7 @@ class Server {
         // CORS
         this.app.use( cors({
             credentials: true,
-            origin: 'http://localhost:4200'
+            origin: '*'
         }) );
 
         // Lectura y parseo del body
